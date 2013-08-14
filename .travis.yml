@@ -5,5 +5,9 @@ rvm:
   - ruby-head
   - jruby-19mode
   - jruby-head
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-head
 install: 'travis_retry bundle install'
 script: 'travis_retry bundle exec rake'
