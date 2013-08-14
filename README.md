@@ -49,6 +49,6 @@ Interested in adding support for another ORM, etc.? Just do a pull request, and 
 
 This gem is released under the [MIT license][lic].
 
-[travis]: http://travis-ci.org/garyseaver/otw
+[travis]: http://travis-ci.org/garysweaver/otw
 [badgefury]: http://badge.fury.io/rb/otw
 [lic]: https://github.com/garysweaver/out_the_window/blob/master/LICENSE
