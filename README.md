@@ -2,7 +2,7 @@
 
 # otw
 
-Provides `current_controller` in each model instance in a way that intends to be safe for concurrent access. Throws separation of concerns "out the window" for specific cases where it is needed.
+Provides `current_controller` in each model instance in a way that intends to be safe for concurrent access. Throws separation of concerns "out the window" for specific cases where having access to the controller, request, etc. are needed.
 
 Should work with ActiveRecord, and may work with Mongoid and MongoMapper since we try to include the current_controller method on those if they exist.
 
