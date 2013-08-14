@@ -46,4 +46,4 @@ This gem is released under the [MIT license][lic].
 
 [travis]: http://travis-ci.org/garysweaver/otw
 [badgefury]: http://badge.fury.io/rb/otw
-[lic]: https://github.com/garysweaver/out_the_window/blob/master/LICENSE
+[lic]: https://github.com/garysweaver/otw/blob/master/LICENSE
