@@ -30,12 +30,7 @@ bundle install
 
 ## Usage
 
-In each model instance, there is a controller attribute. ActiveRecord methods are now overriden to allow you to set it easily.
-
-In your controller, just pass in the controller
-
-It will be set if the controller 
-```
+In each model instance, there is a `current_controller` method to get the controller. To get the request, you'd use `current_controller.request`.
 
 ## Testing
 
