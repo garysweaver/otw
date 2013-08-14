@@ -6,7 +6,7 @@ Provides `current_controller` in each model instance in a way that intends to be
 
 Should work with ActiveRecord, and may work with Mongoid and MongoMapper since we try to include the current_controller method on those if they exist.
 
-Please don't misuse this. Models in Rails should not be concerned with the controller. However, sometimes you might want to have a callback that sets the `current_controller.request.remote_ip` in a field, etc. and this gem provides a way to do that without relying on another gem.
+Please don't misuse this. Models in Rails should not be concerned with the controller. However, sometimes you might want to have a callback that sets the `current_controller.request.remote_ip` in a field, etc.
 
 Use at your own risk.
 
