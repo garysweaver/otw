@@ -109,6 +109,7 @@ DEPENDENCIES
   appraisal (~> 0.5.2)
   bundler (>= 1.2.2)
   fork
+  jdbc-sqlite3
   otw!
   rails (>= 3.0.0)
   rake

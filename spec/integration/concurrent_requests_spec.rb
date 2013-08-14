@@ -3,8 +3,8 @@ require 'spec_helper'
 
 describe "Otw"  do
   
-  # sqlite locking issue with Rails 3.1.12
-  unless Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR < 2
+  # sqlite locking issue with Rails 3.1.12. can't use fork in jruby.
+  unless defined?(JRUBY_VERSION) or (Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR < 2)
     it "handles concurrency" do
       Bar.delete_all
       Foo.delete_all
