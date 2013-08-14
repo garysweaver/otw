@@ -1,0 +1,9 @@
+language: ruby
+rvm:
+  - 2.0.0
+  - 1.9.3
+  - ruby-head
+  - jruby-19mode
+  - jruby-head
+install: 'travis_retry bundle install'
+script: 'travis_retry bundle exec rake'
