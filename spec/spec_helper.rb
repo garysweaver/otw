@@ -1,6 +1,7 @@
 ENV['RAILS_ENV'] = 'test'
 
 puts "Testing Rails v#{Rails.version}"
+puts "with sqlite3: #{`sqlite3 -version`}"
 
 # add dummy to the load path. now we're also at the root of the fake rails app.
 app_path = File.expand_path("../dummy",  __FILE__)
