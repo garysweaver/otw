@@ -23,6 +23,9 @@ begin
     puts "$ sudo blkid -p #{m}\n#{`sudo blkid -p #{m}`}" unless m == 'none'
   end
 rescue; end
+# attempt to get parallels version
+begin; puts "$ sudo prlsrvctl info\n#{`sudo prlsrvctl info`}"; rescue; end
+
 puts "\nNow for the tests!"
 # add dummy to the load path. now we're also at the root of the fake rails app.
 app_path = File.expand_path("../dummy",  __FILE__)
