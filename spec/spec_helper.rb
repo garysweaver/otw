@@ -1,8 +1,23 @@
 ENV['RAILS_ENV'] = 'test'
 
 puts "Testing Rails v#{Rails.version}"
-puts "with sqlite3: #{`sqlite3 -version`}"
 
+puts "\n***Travis CI VM info for debugging POSIX lock fail***\n"
+begin; puts "$ sqlite3 -version\n#{`sqlite3 -version`}"; rescue; end
+begin; puts "$ uname -r\n#{`uname -r`}"; rescue; end
+begin; puts "$ cat /proc/version\n#{`cat /proc/version`}"; rescue; end
+begin; puts "$ lsb_release -a\n#{`lsb_release -a`}"; rescue; end
+begin; puts "$ cat /proc/partitions\n#{`cat /proc/partitions`}"; rescue; end
+begin; puts "$ cat /etc/fstab\n#{`cat /etc/fstab`}"; rescue; end
+begin; puts "$ parted -l\n#{`parted -l`}"; rescue; end
+begin; puts "$ blkid\n#{`blkid`}"; rescue; end
+begin; puts "$ cat /proc/mounts\n#{`cat /proc/mounts`}"; rescue; end
+begin; puts "$ df -T\n#{`df -T`}"; rescue; end
+begin; puts "$ mount\n#{`mount`}"; rescue; end
+begin; puts "$ ls /boot\n#{`ls /boot`}"; rescue; end
+begin; puts "$ dmesg\n#{`dmesg`}"; rescue; end
+puts "\n\n\n\n\n\n\n"
+puts "Now for the tests!"
 # add dummy to the load path. now we're also at the root of the fake rails app.
 app_path = File.expand_path("../dummy",  __FILE__)
 $LOAD_PATH.unshift(app_path) unless $LOAD_PATH.include?(app_path)
