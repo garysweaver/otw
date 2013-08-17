@@ -13,13 +13,14 @@ begin; puts "$ parted -l\n#{`parted -l`}"; rescue; end
 begin; puts "$ cat /proc/mounts\n#{`cat /proc/mounts`}"; rescue; end
 begin; puts "$ df -T\n#{`df -T`}"; rescue; end
 begin; puts "$ pwd\n#{`pwd`}"; rescue; end
+begin; puts "$ sudo blkid\n#{`sudo blkid`}"; rescue; end
 begin
   mounts = `mount`
   puts "$ mount\n#{mounts}"
   # 1st is ours in this case, e.g. /vz/private/6061155 on / type simfs (rw)
-  our_mount = `mount`.split("\n").each do |l|
+  `mount`.split("\n").each do |l|
     m = l.split.first
-    puts "$ sudo blkid -p #{our_mount}\n#{`sudo blkid -p #{our_mount}`}"
+    puts "$ sudo blkid -p #{m}\n#{`sudo blkid -p #{m}`}" unless m == 'none'
   end
 rescue; end
 puts "\nNow for the tests!"
