@@ -11,8 +11,10 @@ begin; puts "$ cat /proc/mounts\n#{`cat /proc/mounts`}"; rescue; end
 begin; puts "$ pwd\n#{`pwd`}"; rescue; end
 begin; puts "$ mount\n#{`mount`}"; rescue; end
 begin
-  puts "flock test.lock sleep 120 & sleep 1; if ! flock -n test.lock true ; then echo \"flock works\"; else echo \"flock fails\"; fi; kill $!"
-  `flock test.lock sleep 120 & sleep 1; if ! flock -n test.lock true ; then echo "flock works"; else echo "flock fails"; fi; kill $!`
+  puts "testing flock..."
+  system 'flock test.lock sleep 5 & sleep 1; if ! flock -n test.lock true ; then echo "flock works"; else echo "flock fails"; fi'
+  # give it time to output
+  sleep 8
 rescue; end
 
 puts "\nNow for the tests!"
