@@ -7,24 +7,13 @@ begin; puts "$ sqlite3 -version\n#{`sqlite3 -version`}"; rescue; end
 begin; puts "$ uname -r\n#{`uname -r`}"; rescue; end
 begin; puts "$ cat /proc/version\n#{`cat /proc/version`}"; rescue; end
 begin; puts "$ lsb_release -a\n#{`lsb_release -a`}"; rescue; end
-begin; puts "$ lsblk -f\n#{`lsblk -f`}"; rescue; end
-begin; puts "$ cat /etc/fstab\n#{`cat /etc/fstab`}"; rescue; end
-begin; puts "$ parted -l\n#{`parted -l`}"; rescue; end
 begin; puts "$ cat /proc/mounts\n#{`cat /proc/mounts`}"; rescue; end
-begin; puts "$ df -T\n#{`df -T`}"; rescue; end
 begin; puts "$ pwd\n#{`pwd`}"; rescue; end
-begin; puts "$ sudo blkid\n#{`sudo blkid`}"; rescue; end
+begin; puts "$ mount\n#{`mount`}"; rescue; end
 begin
-  mounts = `mount`
-  puts "$ mount\n#{mounts}"
-  # 1st is ours in this case, e.g. /vz/private/6061155 on / type simfs (rw)
-  `mount`.split("\n").each do |l|
-    m = l.split.first
-    puts "$ sudo blkid -p #{m}\n#{`sudo blkid -p #{m}`}" unless m == 'none'
-  end
+  puts "flock /path/to/lockfile sleep 120 & sleep 1; if ! flock -n /tmp/foo.lock true ; then echo \"flock works\"; else echo \"flock fails\"; fi; kill $!"
+  `flock /path/to/lockfile sleep 120 & sleep 1; if ! flock -n /tmp/foo.lock true ; then echo "flock works"; else echo "flock fails"; fi; kill $!`
 rescue; end
-# attempt to get parallels version
-begin; puts "$ sudo prlsrvctl info\n#{`sudo prlsrvctl info`}"; rescue; end
 
 puts "\nNow for the tests!"
 # add dummy to the load path. now we're also at the root of the fake rails app.
