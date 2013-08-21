@@ -16,6 +16,13 @@ begin
   # give it time to output
   sleep 8
 rescue; end
+begin
+  puts "testing that python is available for further lock testing"
+  `python -V`
+  `python -c 'print "python is usable here"'`
+rescue
+  puts "python not on path"
+end
 
 puts "\nNow for the tests!"
 # add dummy to the load path. now we're also at the root of the fake rails app.
