@@ -16,10 +16,22 @@ begin
   # give it time to output
   sleep 8
 rescue; end
+
 begin
   puts "testing that python is available for further lock testing"
   puts "$ python -V\n#{`python -V`}"
-  puts "python command test (should output that is usable): #{`python -c 'print "python is usable here"' 2>&1`}"
+  begin
+    puts "testing fcntl lock via python script provided by Dennis Kaarsemaker."
+    puts "assuming that a successful test will report something like IOError: [Errno 35] Resource temporarily unavailable"
+    py_out = `python -c "import fcntl, os, time\n\nfd = open('/tmp/test.lock', 'w')\nif os.fork():\n    fcntl.lockf(fd, fcntl.LOCK_EX)\n    os.wait()\nelse:\n    time.sleep(0.1)\n    fcntl.lockf(fd, fcntl.LOCK_EX|fcntl.LOCK_NB)\n"`
+    if py_out && py_out['Resource temporarily unavailable']
+      puts "python test says fcntl lock works"
+    else
+      puts "maybe fcntl lock not working, according to python"
+    end
+  rescue => e
+    puts "python test of fcntl failed:\n#{e.message}\n#{e.backtrace.join('\n')}"
+  end
 rescue
   puts "python not on path"
 end
