@@ -18,8 +18,8 @@ begin
 rescue; end
 begin
   puts "testing that python is available for further lock testing"
-  `python -V`
-  `python -c 'print "python is usable here"'`
+  puts "$ python -V\n#{`python -V`}"
+  puts "python command test (should output that is usable): #{`python -c 'print "python is usable here"' 2>&1`}"
 rescue
   puts "python not on path"
 end
